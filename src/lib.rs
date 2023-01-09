@@ -8,7 +8,7 @@ extern "system" {
 #[no_mangle]
 unsafe extern "system" fn DllMain(module: usize, reason: u32, _: usize) -> isize {
     if reason == 1 {
-        thread::spawn(move || {
+        thread::spawn(move || -> anyhow::Result<()> {
             // ...
 
             FreeLibraryAndExitThread(module as _, 0);
